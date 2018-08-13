@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+
+<head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Real time font viewer</title>
+  <title>jQuery addClass example</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
@@ -10,77 +12,111 @@
 
   <script type="text/javascript" src="src/jquery.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="src/result-light.css">
+  <link rel="stylesheet" type="text/css" href="src/result-light.css">
 
-      <link rel="stylesheet" type="text/css" href="src/gvWqdb.css">
+  <link rel="stylesheet" type="text/css" href="src/gvWqdb.css">
   <style type="text/css">
-    *, *:before, *:after
-{
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
+    *,
+    *:before,
+    *:after {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
 
-html, body
-{
-    width: 100%;
-    height: 100%;
-    
-    margin: 0;
-    padding: 0;
-}
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    .wrapper {
+      min-height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      grid-template-columns: 100%;
+    }
+
+    header {
+      padding: 1rem;
+    }
+
+    .main {
+      padding: 1rem;
+    }
+
+    footer {
+      padding: 1rem;
+    }
   </style>
-    <script type="text/javascript">
-    window.onload=function(){
-      function GoogleFontSelect( slctr ){
-          var _selected = $(slctr).val(); 						
-          var _linkclass = 'style_link_';
-          if( _selected ){ 	
-            if ( _selected !== 'none' && _selected !== 'Select a font' ) {
-              $( '.'+ _linkclass ).remove();
-              var the_font = _selected.replace(/\s+/g, '+');
-              $('head').append('<link href="http://fonts.googleapis.com/css?family='+ the_font +'" rel="stylesheet" type="text/css" class="'+ _linkclass +'">');		
-              $('*').css('font-family', _selected +', sans-serif' );		
-            }else{			
-              $('*').css('font-family', '' );			
-            }
+  <script type="text/javascript">
+    window.onload = function () {
+      function GoogleFontSelect(slctr) {
+        var _selected = $(slctr).val();
+        var _linkclass = 'style_link_';
+        if (_selected) {
+          if (_selected !== 'none' && _selected !== 'Select a font') {
+            $('.' + _linkclass).remove();
+            var the_font = _selected.replace(/\s+/g, '+');
+            $('head').append('<link href="http://fonts.googleapis.com/css?family=' + the_font + '" rel="stylesheet" type="text/css" class="' + _linkclass + '">');
+            $('*').css('font-family', _selected + ', sans-serif');
+          } else {
+            $('*').css('font-family', '');
           }
         }
-      $("#article1").hide();
-      $("#show-btn").on("click", function(){
+      }
+      $("#show-btn").on("click", function () {
         $("#article1").toggle();
       })
-      $("#font-name").on("change", function(){
-          console.log("JE congade")
-          GoogleFontSelect( this );
+      $("#font-name").on("change", function () {
+        console.log("JE congade")
+        GoogleFontSelect(this);
       })
     }
 
-</script>
+  </script>
 
 </head>
-<body cz-shortcut-listen="true">
-  <div style="display: flex;align-items:center; background: linear-gradient(135deg,#FCDF8A,#F38381);height:100%;">
-  <div class="wh-60 ease"> 
-        <input class="input no-padding" id="font-name" placeholder="Enter a font name." style="background: transparent;">
-        <button id="show-btn" class="btn btn-outline">
-        Show me
-        </button>
-        <article id="article1" style="display: none;">
-        <h3  class="hhr">First title</h3>
-<img src="src/200.jpg">
-        <p class="text">
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc 
-sed quam egestas, pretium sapien eu, commodo leo. Donec aliquam egestas 
-mauris non elementum. Mauris non eros posuere, tincidunt nunc elementum,
- porta justo.</p>
-        </article>
-    </div>
-</div>
-  
+
+<body cz-shortcut-listen="true" style=" background: linear-gradient(135deg,#FCDF8A,#F38381);height:100%;">
+
+  <div class="wrapper no-margin">
+    <header class="header bg-contrast no-margin wh-100">Google Font viewer</header>
+    <main class="wh-60 no-margin">
+      <div style="display: flex;align-items:center;">
+        <div class="ease">
+          <input class="input no-padding" id="font-name" placeholder="Enter a font name." style="background: transparent;">
+          <article id="article1">
+            <h3 class="hhr">First title</h3>
+            <img src="src/200.jpg">
+            <p class="text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed quam egestas, pretium sapien eu, commodo leo. Donec aliquam
+              egestas mauris non elementum. Mauris non eros posuere, tincidunt nunc elementum, porta justo.</p>
+          </article>
+        </div>
+      </div>
+    </main>
+    <footer class="footer wh-100 no-margin">Hosted on
+      <a href="https://github.com/pipic1/Google-Font-Real-Time-Viewer">github</a>.</footer>
+  </div>
+
+
+
+
+
   <script>
     // tell the embed parent frame the height of the content
-    if (window.parent && window.parent.parent){
+    if (window.parent && window.parent.parent) {
       window.parent.parent.postMessage(["resultsFrame", {
         height: document.body.getBoundingClientRect().height,
         slug: "xpvt214o"
@@ -89,4 +125,6 @@ mauris non elementum. Mauris non eros posuere, tincidunt nunc elementum,
   </script>
 
 
-</body></html>
+</body>
+
+</html>
