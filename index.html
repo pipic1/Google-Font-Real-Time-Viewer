@@ -31,6 +31,9 @@
 
       margin: 0;
       padding: 0;
+      background: linear-gradient(-45deg, #EE77521A, #E73C7E1A, #23A6D51A, #23D5AB1A);
+      background-size: 1000% 1000%;
+      animation: Gradient 15s ease infinite;
     }
 
 
@@ -41,23 +44,34 @@
     }
 
     .wrapper {
-      min-height: 100%;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      grid-template-columns: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
-    header {
-      padding: 1rem;
+    main{
+      flex: 1 1 auto;
+      overflow-y: hidden;
     }
 
-    .main {
-      padding: 1rem;
+    article{  
+      overflow-y: scroll;
     }
 
-    footer {
-      padding: 1rem;
+    
+    @keyframes Gradient {
+      0% {
+        background-position: 0% 50%
+      }
+      50% {
+        background-position: 100% 50%
+      }
+      100% {
+        background-position: 0% 50%
+      }
     }
+
+
   </style>
   <script type="text/javascript">
     window.onload = function () {
@@ -79,7 +93,6 @@
         $("#article1").toggle();
       })
       $("#font-name").on("change", function () {
-        console.log("JE congade")
         GoogleFontSelect(this);
       })
     }
@@ -88,26 +101,47 @@
 
 </head>
 
-<body cz-shortcut-listen="true" style=" background: linear-gradient(135deg,#FCDF8A,#F38381);height:100%;">
+<body cz-shortcut-listen="true" style="height:100%;">
 
   <div class="wrapper no-margin">
-    <header class="header bg-contrast no-margin wh-100">Google Font viewer</header>
-    <main class="wh-60 no-margin">
-      <div style="display: flex;align-items:center;">
-        <div class="ease">
-          <input class="input no-padding" id="font-name" placeholder="Enter a font name." style="background: transparent;">
-          <article id="article1">
-            <h3 class="hhr">First title</h3>
-            <img src="src/200.jpg">
-            <p class="text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed quam egestas, pretium sapien eu, commodo leo. Donec aliquam
-              egestas mauris non elementum. Mauris non eros posuere, tincidunt nunc elementum, porta justo.</p>
-          </article>
-        </div>
+    <header class="header bg-contrast no-margin wh-100 flex">
+      <h3 class="padding-s">Google Font viewer</h3>
+    </header>
+    <main class="wh-60 no-margin wh-mobile-100">
+      <div style="display: flex;align-items:center;height: 100%;">
+          <div style="height: 100%;" class="ease  flex flex-column wh-100">
+              <input id="font-name" placeholder="Enter a font name." style="background: transparent;font-size: 2em;  " class="input margin-m text-center input-outline">
+              <article id="article1" style="height: 100%;">
+                  <h1 class="hhr">Google font</h1>
+                  <h4>World News n°1</h4>
+                <img src="src/200.jpg">
+                <p class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut vehicula turpis. Integer vel tortor porttitor, efficitur tellus in, tincidunt arcu. Proin ut ante vitae nisi aliquet convallis. Nullam ut quam non lacus vestibulum imperdiet. Ut ullamcorper pellentesque suscipit. Nulla vitae elementum magna. Nulla ullamcorper orci nec luctus condimentum. In rutrum at diam nec blandit.
+                  </p>
+                  
+                  <h4>World News n°2</h4>
+                  <p class="text">
+                    Etiam in porttitor odio. Pellentesque enim odio, pharetra sit amet tempor sed, volutpat vel metus. Sed accumsan fringilla ligula, nec euismod leo dapibus a. In accumsan tortor vel ex elementum faucibus. Sed quis tellus in felis interdum pretium. Morbi ante sem, tincidunt et ultricies ac, luctus quis dui. Ut sollicitudin dolor non dapibus feugiat. Sed ut ipsum quis est fermentum mattis a id tortor. Praesent maximus cursus mi, ac ornare sapien venenatis vitae. Aliquam erat volutpat.
+                </p> 
+                
+                <h4>World News n°3</h4>
+                <p class="text">
+                    Vivamus a lectus semper, tincidunt orci sollicitudin, maximus dolor. Nullam feugiat tortor erat, at pulvinar odio fringilla vel. Curabitur dignissim vehicula tincidunt. Integer varius vitae mi a tristique. Proin sit amet aliquet velit. Sed interdum egestas est. Ut ut aliquam sapien. Nullam iaculis iaculis purus. Aliquam tincidunt justo quis porta vulputate. Vivamus justo ipsum, tincidunt nec faucibus a, suscipit vel odio. Praesent euismod tristique lacinia. Maecenas elementum lobortis ex a pellentesque. Proin sagittis tempus convallis. Mauris tincidunt blandit nisl in viverra. Nullam eget neque dui. Cras non rhoncus massa, at scelerisque nibh. 
+                </p>
+              </article>
+            </div>
       </div>
     </main>
-    <footer class="footer wh-100 no-margin">Hosted on
-      <a href="https://github.com/pipic1/Google-Font-Real-Time-Viewer">github</a>.</footer>
+    <footer class="footer wh-100 no-margin flex">
+      <p class="text">Created by <strong>Pierre Pic</strong>. Hosted on
+      <a href="https://github.com/pipic1/Google-Font-Real-Time-Viewer">github</a>.
+      </p>
+      <span style="color:white;">
+  
+        <svg height="32" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+  
+      </span>
+    </footer>
   </div>
 
 
